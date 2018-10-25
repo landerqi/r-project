@@ -218,7 +218,7 @@ FuncList <- list(base = function(x) mean(x),
                  med = function(x) median(x), 
                  manual = function(x) {
                    n <- length(x)
-                   x <- sort(x)[c(-1, -n)]
+                   x <- sort(x)[c(-1, -n)] # 排序x, 并去掉第一个，和最后一个元素
                    print(x)
                    mean(x)
                  })
