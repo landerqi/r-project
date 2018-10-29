@@ -47,6 +47,7 @@ t(as.data.frame(result))
 # 矩阵计算的向量化
 set.seed(1)
 vec <- round(runif(12) * 100)
+vec
 mat <- matrix(vec, 3, 4)
 mat
 apply(mat, 1, sum)
