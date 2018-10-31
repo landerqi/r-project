@@ -62,3 +62,32 @@ data <- read.table('clipboard') # windows下可用， 复制剪贴板上的内�
 ### DBI方式，可以根据已经安装的数据库类型来安装相应的驱动, 非windows下用
 
 ## windows下连接准备
+library(RODBC)
+con <- odbcConnect(
+  'my_data',
+  uid = 'landerqi',
+  pwd = 'soshelp333'
+)
+con
+# 查看所有数据表
+sqlTables(con, errors = FALSE, as.is = TRUE,
+          catalog = NULL, schema = NULL, tableName = NULL,
+          tableType = NULL, literal = FALSE)
+userdat <- sqlFetch(con, 'user')
+userdat
+# crimedat <- sqlFetch(con, "Crime")
+# pundat <- sqlQuery(con, "select * from Punishment")
+dadat <- sqlQuery(con, 'select * from db')
+dadat
+set.seed(1)    # for reproducible example
+df <- data.frame(Open=rnorm(50), Low=rnorm(50), High=rnorm(50), Close=rnorm(50))
+df
+sqlSave(con,df,"exdata3", rownames=F) # 创建exdata3数据表
+data1 <- sqlQuery(con, 'select * from exdata3')
+data1 <- transform(data1, DiffHighLow = high - low)
+data1
+sqlQuery(con, 'drop table exdata3') # 删除数据表
+sqlSave(con, data1, 'exdata3')
+result <- sqlQuery(con, 'select * from exdata3')
+result
+close(con)
