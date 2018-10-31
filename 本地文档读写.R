@@ -112,9 +112,10 @@ con <- odbcConnectExcel2007('test.xlsx') # 64 位系统驱动有问题
 data <- sqlFetch(con, 'sheet') 
 odbcClose(con)
 
-# R excel 中文不能读取
+# R excel
 library(xlsx)
-workbook <- 'E:/www.github.com/r-project/test.xlsx'
+workbook <- 'E:/www.github.com/r-project/test2.xlsx'
 workbook
-mydataframe <- read.xlsx(workbook, 1) # 1表示第一张表
+mydataframe <- read.xlsx(workbook, 1, encoding = 'UTF-8') # 1表示第一张表
 mydataframe
+head(mydataframe)
