@@ -18,18 +18,18 @@ x <- readline() # 输入单个字符串数据
 x <- scan() #输入多个数值, 如果就是一个向量了，不输入，直接回车，结束
 
 # 本地文本输出
-output <- file('output.txt') # 建立一个连接
+output <- file('file/output.txt') # 建立一个连接
 cat(1:100, sep = '\t', file = output) # cat可以直接将对象输出到文件连接中, 如果文件中已经有内容，可以在cat中设置append参数为真，即表示是新增在文件尾部。
 close(output)
 
-output <- file('output.txt')
+output <- file('file/output.txt')
 input <- scan(file = output) # scan读入的内容应该是一致的类型，不可能同时读入字符和数值
 close(output)
 input
 
 # 字符串的输入与输出
-output <- file('output.txt')
-writeLines(as.character(1:12), con = output)
+output <- file('file/output.txt')
+writeLines(as.character(1:19), con = output)
 input <- readLines(output)
 input
 
@@ -48,8 +48,8 @@ doc
 # 数据表的读写
 head(iris)
 tail(iris)
-write.table(iris, file = 'iris.csv', sep = ',')
-data <- read.table(file = 'iris.csv', sep = ',')
+write.table(iris, file = 'file/iris.csv', sep = ',')
+data <- read.table(file = 'file/iris.csv', sep = ',')
 data
 data <- read.table(file = file.choose(), sep = ',') # file.choose：打开文件选择框
 data <- read.table('clipboard') # windows下可用， 复制剪贴板上的内容
@@ -114,7 +114,7 @@ odbcClose(con)
 
 # R excel
 library(xlsx)
-workbook <- 'E:/www.github.com/r-project/test2.xlsx'
+workbook <- 'E:/www.github.com/r-project/file/test2.xlsx'
 workbook
 mydataframe <- read.xlsx(workbook, 1, encoding = 'UTF-8') # 1表示第一张表
 mydataframe
