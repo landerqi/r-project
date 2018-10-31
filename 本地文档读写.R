@@ -47,6 +47,7 @@ doc
 
 # 数据表的读写
 head(iris)
+tail(iris)
 write.table(iris, file = 'iris.csv', sep = ',')
 data <- read.table(file = 'iris.csv', sep = ',')
 data
@@ -62,11 +63,19 @@ data <- read.table('clipboard') # windows下可用， 复制剪贴板上的内�
 ### DBI方式，可以根据已经安装的数据库类型来安装相应的驱动, 非windows下用
 
 ## windows下连接准备
+## 1.R下载RODBC包
+## 2.下载安装MySQL ODBC
+## 3. 控制面板->管理工具->数据源（ODBC）->双击->添加->选中mysql ODBC driver一项填写：
+### data source name一项填写你要使用的名字，如：mysql_data;
+### description随意填写
+### TCP/IP Server 填写服务器ip, 本地数据库一般为：127.0.0.1， 端口默认3306
+### user填写你的mysql用户名
+### password 填写你的Mysql密码，然后database里会出现你的mysql里的所有数据库，选择一个数据库，确定。
 library(RODBC)
 con <- odbcConnect(
-  'my_data',
-  uid = 'landerqi',
-  pwd = 'soshelp333'
+  'my_data'
+  # uid = 'landerqi',  # 数据源配好后，可以不用传uid和password了，其实这样也方便管理员统一管理，因为为了安全，密码可能会经常改，这样只需要在数据源处修改就行了
+  # pwd = 'soshelp333'
 )
 con
 # 查看所有数据表
@@ -91,3 +100,21 @@ sqlSave(con, data1, 'exdata3')
 result <- sqlQuery(con, 'select * from exdata3')
 result
 close(con)
+
+# 读取SPSS和SAS数据文件
+### foreign包中有大量读取外部数据的函数
+statadata <- read.dta('C:/temp/statafile.dta')
+spssdata <- read.spss('C:/temp/spssfile.sav')
+sasdata 
+
+library(RODBC)
+con <- odbcConnectExcel2007('test.xlsx') # 64 位系统驱动有问题
+data <- sqlFetch(con, 'sheet') 
+odbcClose(con)
+
+# R excel 中文不能读取
+library(xlsx)
+workbook <- 'E:/www.github.com/r-project/test.xlsx'
+workbook
+mydataframe <- read.xlsx(workbook, 1) # 1表示第一张表
+mydataframe
