@@ -28,3 +28,17 @@ names <- sapply(nodes, xmlValue)
 
 # Api
 # https://api.douban.com/v2/movie/subject/5323968
+  
+# 【数据获取】爬虫利器Rvest包
+library(rvest)
+web <- read_html("https://book.douban.com/top250?icn=index-book250-all", encoding="UTF-8")
+position <- web %>% html_nodes("p.pl") %>% html_text()
+# position <- iconv(position, from = 'UTF-8', to = 'GB2312')
+Encoding(position)
+position # 有时输出的中文是 unicode码 此时需要设置：Sys.setlocale("LC_CTYPE", "UTF-8")
+# as.character(position)
+# position_ch <- lapply(position, as.character)
+# position_ch
+# 第一行是加载Rvest包。
+# 第二行是用read_html函数读取网页信息（类似Rcurl里的getURL），在这个函数里只需写清楚网址和编码（一般就是UTF-8）即可。
+# 第三行是获取节点信息。用%>%符号进行层级划分。web就是之前存储网页信息的变量，所以我们从这里开始，然后html_nodes()函数获取网页里的相应节点。在下面代码里我简单的重现了原网页里的一个层级结构。可以看到，实际上我们要爬取的信息在25个class属性为pl的<p>标签里的文本。
