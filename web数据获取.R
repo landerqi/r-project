@@ -32,6 +32,7 @@ names <- sapply(nodes, xmlValue)
 # 【数据获取】爬虫利器Rvest包
 library(rvest)
 web <- read_html("https://book.douban.com/top250?icn=index-book250-all", encoding="UTF-8")
+Sys.setlocale("LC_CTYPE", "UTF-8")
 position <- web %>% html_nodes("p.pl") %>% html_text()
 # position <- iconv(position, from = 'UTF-8', to = 'GB2312')
 Encoding(position)
