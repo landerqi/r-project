@@ -35,10 +35,8 @@ input
 
 # 小练习
 ### 读取用户r语言已经安装的每个扩展包的DESCRIPTION文件。
-path <- .libPaths()[1]
-path
-doc.names <- dir(path)
-doc.names
+path <- .libPaths()[1]; path
+doc.names <- dir(path); doc.names
 doc.path <- sapply(doc.names, function(names) paste(path, names, 'DESCRIPTION', sep = '/'))
 doc.path
 doc <- sapply(doc.path, function(doc) readLines(doc))

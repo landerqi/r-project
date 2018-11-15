@@ -74,8 +74,8 @@ iris_long
 
 # 数据的拆分合并
 ### 合并数据框
-datax <- data.frame(id = c(1, 2, 3), gender = c(23, 34, 41))
-datay <- data.frame(id = c(3, 1, 2), name = c('tom', 'john', 'ken'))
+datax <- data.frame(id = c(1, 2, 3), gender = c(23, 34, 41)); datax
+datay <- data.frame(id = c(3, 1, 2), name = c('tom', 'john', 'ken')); datay
 merge(datax, datay, by = 'id')
 
 # 数据按变量拆分

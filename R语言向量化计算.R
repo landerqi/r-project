@@ -28,7 +28,7 @@ summary(iris)
 options(digits = 10) # 更改小数位数
 sapply(iris[ ,1:4], function(x) sd(x) / mean(x))
 
-mylist <- as.list(iris[ ,1:4])
+mylist <- as.list(iris[ ,1:4]); mylist
 class(mylist)
 # 处理list 和sapply非常相似
 lapply(mylist, mean)
