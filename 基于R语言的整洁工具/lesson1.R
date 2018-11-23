@@ -73,5 +73,5 @@ ggplot(frequency, aes(x = proportion, y = `Jane Austen`, color = abs(`Jane Auste
   labs(y = 'Jane Austen', x = NULL)
 
 ### 测试他们的相关性
-cor.test(data = frequency[frequency$author == 'Bronte Sisters', ], ~proportion + `Jane Austen`)
+cor.test( ~proportion + `Jane Austen`, data = frequency[frequency$author == 'Bronte Sisters', ])
 cor.test(data = frequency[frequency$author == 'H.G. Wells', ], ~proportion + `Jane Austen`)
