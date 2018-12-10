@@ -38,11 +38,11 @@ xxx <- lm(y~x)
 summary(xxx)
 confint(xxx)
 x0 <- data.frame(x = 35)
-predict(xxx, x0, interval = 'prediction', level = 0.95)
+predict(xxx, x0, interval = 'prediction', level = 0.95) # fit: 拟合值，y帽子。 
 
 #p93, 4.7
 x <- c(5, 8, 10, 20, 30, 40, 50, 60, 65, 90, 120)
 y <- c(4, 6, 8, 13, 16, 17, 19, 25, 26, 29, 46)
 model <- lm(y~x)
 summary(model)
-confint(model)
+confint(model, level = 0.95)
